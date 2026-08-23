@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tshepiso Mokoatle — Finance, Technology & AI</title>
+<meta name="description" content="Portfolio of Tshepiso Mokoatle — finance, technology, AI and business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181F;
+    --ink-soft:#565F6E;
+    --paper:#FFFFFF;
+    --paper-alt:#F5F5F3;
+    --navy:#131B2E;
+    --navy-soft:#1B2438;
+    --gold:#A9812E;
+    --gold-soft:#C9A961;
+    --green:#4F9C6C;
+    --line:#E3E1DA;
+    --line-dark:#2C3550;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.site-nav.scrolled{ border-bottom-color:var(--line); }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.05rem;
+    letter-spacing:0.01em; text-decoration:none; color:var(--ink);
+  }
+  .nav-mark span{color:var(--gold);}
+  nav.nav-links{ display:flex; gap:28px; }
+  nav.nav-links a{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem;
+    text-transform:uppercase; letter-spacing:0.06em;
+    text-decoration:none; color:var(--ink-soft);
+    padding:6px 0; border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  nav.nav-links a:hover{ color:var(--gold); border-color:var(--gold); }
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--line);
+    border-radius:6px; width:40px; height:40px; cursor:pointer;
+    flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  }
+  .nav-toggle span{ width:18px; height:2px; background:var(--ink); display:block; }
+
+  /* HERO */
+  section.hero{
+    padding:168px 0 96px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--gold); display:inline-block; }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    font-weight:600; line-height:1.08; max-width:16ch;
+  }
+  .hero h1 em{ font-style:italic; color:var(--gold); font-weight:500; }
+  .hero-sub{
+    margin-top:26px; max-width:56ch; font-size:1.08rem; color:var(--ink-soft);
+  }
+  .hero-terminal{
+    margin-top:28px; font-family:'IBM Plex Mono',monospace; font-size:0.92rem;
+    color:var(--ink); background:var(--paper-alt); border:1px solid var(--line);
+    border-radius:8px; padding:14px 18px; display:inline-block; min-height:1.4em;
+  }
+  .hero-terminal .prompt{ color:var(--gold); margin-right:8px; }
+  .caret{ display:inline-block; width:8px; height:1.05em; background:var(--ink); margin-left:2px; vertical-align:text-bottom; animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero-cta{ margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
+  .hero-photo-frame{
+    position:relative; border-radius:10px; overflow:hidden;
+    border:1px solid var(--line); background:var(--paper-alt);
+    aspect-ratio:3/4; max-width:360px; justify-self:end;
+  }
+  .hero-photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-photo-frame::after{
+    content:''; position:absolute; inset:0; border:1px solid var(--gold);
+    border-radius:10px; margin:10px; pointer-events:none; opacity:0.55;
+  }
+  .hero-photo-cap{
+    margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:0.74rem;
+    color:var(--ink-soft); text-align:right; letter-spacing:0.03em;
+  }
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-size:0.82rem; letter-spacing:0.03em;
+    text-transform:uppercase; text-decoration:none; padding:13px 26px;
+    border-radius:4px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .2s ease, opacity .2s ease;
+  }
+  .btn-primary{ background:var(--gold); color:#fff; }
+  .btn-primary:hover{ transform:translateY(-2px); background:#94711F; }
+  .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--line); cursor:default; }
+  .btn-ghost[data-soon]{ opacity:0.6; cursor:not-allowed; }
+
+  /* SECTION SHELL */
+  section{ padding:88px 0; }
+  section.alt{ background:var(--paper-alt); }
+  .section-head{ margin-bottom:44px; max-width:60ch; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.3rem); font-weight:600; }
+  .section-head p{ margin-top:14px; color:var(--ink-soft); }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start; }
+  .about-grid p{ margin:0 0 16px; color:var(--ink-soft); font-size:1.02rem; }
+  .about-facts{ border-top:1px solid var(--line); }
+  .fact-row{
+    display:flex; justify-content:space-between; padding:14px 0;
+    border-bottom:1px solid var(--line); gap:16px;
+  }
+  .fact-row .k{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; text-transform:uppercase; color:var(--ink-soft); letter-spacing:0.05em; }
+  .fact-row .v{ font-size:0.94rem; text-align:right; }
+
+  /* LEDGER ROW COMPONENT */
+  .ledger{ border-top:1px solid var(--line); }
+  .ledger-row{
+    display:grid; grid-template-columns:200px 1fr; gap:24px;
+    padding:22px 0; border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .ledger-row:hover{ background:rgba(169,129,46,0.05); }
+  .ledger-row .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.8rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.05em; padding-top:2px; }
+  .ledger-row .body h3{ font-family:'Inter',sans-serif; font-weight:600; font-size:1.02rem; margin-bottom:6px; }
+  .ledger-row .body p{ margin:0; color:var(--ink-soft); font-size:0.95rem; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.04em; padding:5px 10px; border:1px solid var(--line);
+    border-radius:20px; color:var(--ink-soft);
+  }
+
+  /* PROJECTS */
+  .projects-grid{ display:grid; grid-template-columns:1fr; max-width:640px; }
+  .project-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:10px;
+    padding:32px; display:flex; flex-direction:column; height:100%;
+  }
+  .project-card .p-eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
+  .project-card h3{ font-size:1.3rem; font-weight:600; margin-bottom:12px; }
+  .project-card p{ color:var(--ink-soft); font-size:0.96rem; margin:0 0 16px; flex-grow:0; }
+  .project-card ul{ margin:0 0 18px; padding-left:18px; color:var(--ink-soft); font-size:0.92rem; }
+  .project-card ul li{ margin-bottom:6px; }
+  .project-link{
+    margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:0.82rem;
+    text-decoration:none; color:var(--ink); border-bottom:1px solid var(--gold);
+    padding-bottom:2px; display:inline-flex; align-items:center; gap:6px; width:fit-content;
+  }
+  .project-link:hover{ color:var(--gold); }
+
+  /* CERTIFICATIONS - dark */
+  section.certs{ background:var(--navy); color:#EDEEF2; }
+  section.certs .eyebrow{ color:var(--gold-soft); }
+  section.certs .eyebrow::before{ background:var(--gold-soft); }
+  section.certs .section-head p{ color:#A9AFC2; }
+  section.certs .ledger{ border-top-color:var(--line-dark); }
+  section.certs .ledger-row{ border-bottom-color:var(--line-dark); }
+  section.certs .ledger-row:hover{ background:rgba(201,169,97,0.07); }
+  section.certs .ledger-row .body h3{ color:#F5F6F8; }
+  section.certs .ledger-row .body p{ color:#A9AFC2; }
+  .cert-verify{ font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--gold-soft); text-decoration:none; }
+  .cert-verify:hover{ text-decoration:underline; }
+  .cert-headline{
+    background:var(--navy-soft); border:1px solid var(--line-dark); border-radius:10px;
+    padding:28px 30px; margin-bottom:36px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .cert-headline h3{ color:#fff; font-size:1.25rem; font-weight:600; margin-bottom:6px; }
+  .cert-headline p{ color:#A9AFC2; margin:0; font-size:0.92rem; }
+  .cert-badge{
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--navy);
+    background:var(--gold-soft); padding:8px 14px; border-radius:20px; white-space:nowrap;
+  }
+
+  /* CONTACT */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .contact-list{ display:flex; flex-direction:column; gap:4px; }
+  .contact-item{
+    display:flex; align-items:center; gap:14px; padding:16px 0;
+    border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink);
+    transition:padding-left .2s ease, color .2s ease;
+  }
+  .contact-item:hover{ padding-left:8px; color:var(--gold); }
+  .contact-item .ic{ width:20px; height:20px; flex-shrink:0; color:var(--gold); }
+  .contact-item .lbl{ font-family:'IBM Plex Mono',monospace; font-size:0.72rem; text-transform:uppercase; color:var(--ink-soft); display:block; letter-spacing:0.05em; margin-bottom:2px; }
+  .contact-item .val{ font-size:0.98rem; }
+
+  footer{
+    padding:28px 0; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:0.76rem; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* reveal animation */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px){
+    nav.nav-links{ display:none; position:absolute; top:64px; left:0; right:0; background:var(--paper); flex-direction:column; padding:16px 28px; border-bottom:1px solid var(--line); gap:4px;}
+    nav.nav-links.open{ display:flex; }
+    nav.nav-links a{ padding:12px 0; border-bottom:1px solid var(--line); }
+    .nav-toggle{ display:flex; }
+    .about-grid, .contact-grid{ grid-template-columns:1fr; gap:36px; }
+    .hero-grid{ grid-template-columns:1fr; gap:32px; }
+    .hero-grid > div:last-child{ order:-1; }
+    .hero-photo-frame{ max-width:240px; justify-self:start; }
+    .hero-photo-cap{ text-align:left; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .ledger-row{ grid-template-columns:1fr; gap:8px; }
+    section{ padding:64px 0; }
+    section.hero{ padding:136px 0 64px; }
+    .cert-headline{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-mark">T<span>.</span>Mokoatle</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Credentials</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Johannesburg, South Africa</div>
+      <h1>Building at the intersection of finance, technology &amp; <em>AI.</em></h1>
+      <p class="hero-sub">I'm Tshepiso Mokoatle — a 2025 matriculant from Bracken High School with a business and finance foundation, currently applying to international universities while building hands-on projects with AI-assisted tools.</p>
+      <div class="hero-terminal mono" id="typedLine">
+        <span class="prompt">&gt;</span><span id="typedText"></span><span class="caret"></span>
+      </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#" class="btn btn-ghost" data-soon title="Full CV coming soon">Download CV</a>
+      </div>
+    </div>
+    <div>
+      <div class="hero-photo-frame">
+        <img src="assets/dante-portrait.jpg" alt="Portrait of Tshepiso Mokoatle">
+      </div>
+      <p class="hero-photo-cap">Tshepiso Mokoatle</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">About</div>
+      <h2>A finance mindset, a builder's habits</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I completed Grade 12 at Bracken High School in 2025, with an academic focus on business and finance. Since then I've been preparing international university applications while using AI-assisted tools to design, build, and ship small projects — from a self-serve coding course to a personal document generator.</p>
+        <p>I'm drawn to the space where business thinking meets technical execution: understanding a problem well enough to explain it in plain language, then using the right tools — AI-assisted or otherwise — to actually build the solution. Outside of that, I spend time on creative work like content strategy, brand concepts, and design, which keeps the "build something real" habit going even outside the classroom.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact-row"><span class="k">Based in</span><span class="v">Johannesburg, South Africa</span></div>
+        <div class="fact-row"><span class="k">Focus</span><span class="v">Finance · Technology · AI · Business</span></div>
+        <div class="fact-row"><span class="k">Status</span><span class="v">2025 Matriculant, Bracken High School</span></div>
+        <div class="fact-row"><span class="k">Next</span><span class="v">International university applications in progress</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="alt" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Skills</div>
+      <h2>Technical, business &amp; core strengths</h2>
+      <p>What I've built and what's been independently assessed.</p>
+    </div>
+
+    <div class="ledger reveal">
+      <div class="ledger-row">
+        <div class="lbl">Technical / AI</div>
+        <div class="body">
+          <h3>AI-assisted development &amp; tooling</h3>
+          <p>Building working web apps by describing features in plain language and iterating on live previews — plus foundational Python for applied projects.</p>
+          <div class="tag-row">
+            <span class="tag">Lovable</span>
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">Python</span>
+            <span class="tag">ReportLab</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Git &amp; GitHub</span>
+          </div>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Business / Finance</div>
+        <div class="body">
+          <h3>Applied business &amp; finance foundation</h3>
+          <p>NSC-level business and finance coursework, paired with independent research into financial and estate planning topics, and light brand/market strategy work.</p>
+          <div class="tag-row">
+            <span class="tag">Financial Literacy</span>
+            <span class="tag">Business Strategy</span>
+            <span class="tag">Brand &amp; Market Research</span>
+          </div>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Assessed strengths</div>
+        <div class="body">
+          <h3>Problem-solving &amp; grit</h3>
+          <p>Scored in the top 20% on SA Youth's problem-solving capability assessment, and scored highest on grit in SA Youth's behavioural profile — developed with Oxford University and J-PAL.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Projects</div>
+      <h2>Things I've built</h2>
+      <p>Independent projects, built and shipped using AI-assisted development tools.</p>
+    </div>
+    <div class="projects-grid reveal">
+
+      <div class="project-card">
+        <div class="p-eyebrow">Live Product</div>
+        <h3>First Line</h3>
+        <p>A self-serve web app that teaches people with zero coding background to write their first lines of code — every lesson written in plain English, with practice feedback that explains exactly what a learner got wrong, and a scored exam at the end of each course.</p>
+        <ul>
+          <li>2 courses, 7 lessons: "Coding From Zero" and "AWS Cloud Essentials"</li>
+          <li>On-device progress tracking — no login required to start learning</li>
+          <li>Built solo on Lovable, an AI-assisted app builder</li>
+        </ul>
+        <div class="tag-row" style="margin-bottom:18px;">
+          <span class="tag">Lovable</span>
+          <span class="tag">AI-Assisted Dev</span>
+          <span class="tag">Responsive Web App</span>
+        </div>
+        <a class="project-link" href="https://intro-code-journey.lovable.app" target="_blank" rel="noopener">Visit live site →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="alt" id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2>Academic background</h2>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-row">
+        <div class="lbl">2025</div>
+        <div class="body">
+          <h3>Bracken High School — Grade 12 / NQF Level 4</h3>
+          <p>Completed National Senior Certificate with a focus on business and finance subjects.</p>
+          <div class="tag-row">
+            <span class="tag">English (Home Language) — 50–59%</span>
+            <span class="tag">IsiZulu (Additional Language) — 60–69%</span>
+            <span class="tag">Mathematical Literacy — 60–69%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs" id="certifications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Credentials</div>
+      <h2>Certifications &amp; training</h2>
+      <p>Completed through Google, delivered via Coursera.</p>
+    </div>
+
+    <div class="cert-headline reveal">
+      <div>
+        <h3>Google AI Essentials — Specialization</h3>
+        <p>5 courses · Issued August 2026 · Google, via Coursera</p>
+      </div>
+      <a class="cert-badge" href="https://coursera.org/verify/specialization/19I9BL6SAW48" target="_blank" rel="noopener">Verify specialization →</a>
+    </div>
+
+    <div class="ledger reveal">
+      <div class="ledger-row">
+        <div class="lbl">Course 1</div>
+        <div class="body">
+          <h3>Introduction to AI</h3>
+          <p><a class="cert-verify" href="https://coursera.org/verify/OBONNBQ7EA6M" target="_blank" rel="noopener">Verify certificate →</a></p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Course 2</div>
+        <div class="body">
+          <h3>Maximize Productivity With AI Tools</h3>
+          <p><a class="cert-verify" href="https://coursera.org/verify/58AJ333CKGN7" target="_blank" rel="noopener">Verify certificate →</a></p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Course 3</div>
+        <div class="body">
+          <h3>Discover the Art of Prompting</h3>
+          <p><a class="cert-verify" href="https://coursera.org/verify/43NP3WIRY59B" target="_blank" rel="noopener">Verify certificate →</a></p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Course 4</div>
+        <div class="body">
+          <h3>Use AI Responsibly</h3>
+          <p><a class="cert-verify" href="https://coursera.org/verify/BSWJNO3WDVF3" target="_blank" rel="noopener">Verify certificate →</a></p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="lbl">Course 5</div>
+        <div class="body">
+          <h3>Stay Ahead of the AI Curve</h3>
+          <p><a class="cert-verify" href="https://coursera.org/verify/TSLLY8F15YJZ" target="_blank" rel="noopener">Verify certificate →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Experience</div>
+      <h2>Where I'm at</h2>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger-row">
+        <div class="lbl">Currently</div>
+        <div class="body">
+          <h3>No formal work experience yet</h3>
+          <p>I'm building hands-on experience through independent, AI-assisted projects (see Projects above) while completing coursework and preparing my international university applications. Open to internships and entry-level opportunities in finance, technology, or business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="alt" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow">Contact</div>
+        <h2 style="font-size:clamp(1.7rem,3vw,2.3rem); font-weight:600; margin-bottom:16px;">Let's talk</h2>
+        <p style="color:var(--ink-soft); max-width:44ch;">Open to internships, entry-level roles, and conversations about finance, technology, and AI. Reach out through any of the channels below.</p>
+      </div>
+      <div class="contact-list reveal">
+        <a class="contact-item" href="mailto:tshepisomambi5@gmail.com">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <span><span class="lbl">Email</span><span class="val">tshepisomambi5@gmail.com</span></span>
+        </a>
+        <a class="contact-item" href="tel:+27685876733">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span><span class="lbl">Phone</span><span class="val">068 587 6733</span></span>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/tshepiso-mokoatle-4b5bb2289" target="_blank" rel="noopener">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span><span class="lbl">LinkedIn</span><span class="val">in/tshepiso-mokoatle</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>Tshepiso Mokoatle — Johannesburg, South Africa</span>
+    <span>Built with AI-assisted development</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // Typed terminal line
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const line = 'whoami — finance × technology × AI';
+  const typedEl = document.getElementById('typedText');
+  if (reduceMotion) {
+    typedEl.textContent = line;
+  } else {
+    let i = 0;
+    (function type(){
+      if (i <= line.length) {
+        typedEl.textContent = line.slice(0, i);
+        i++;
+        setTimeout(type, 38);
+      }
+    })();
+  }
+
+  // Placeholder CV button
+  document.querySelector('[data-soon]').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('A downloadable CV will be added here soon.');
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
